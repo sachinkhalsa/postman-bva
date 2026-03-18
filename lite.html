@@ -295,6 +295,70 @@ body{font-family:'Inter',sans-serif}
     </div>
   </div>
 
+  <!-- Value at Risk -->
+  <div id="r-riskSection" class="bg-white border border-gray-200 rounded-2xl p-6 mb-6 hidden">
+    <h3 class="font-bold text-sm text-gray-900 mb-1">Value at Risk</h3>
+    <p class="text-xs text-gray-400 mb-4">Weak AIEI dimensions put specific value drivers at risk. These savings depend on AI being effective.</p>
+    <div id="r-riskItems" class="space-y-3"></div>
+  </div>
+
+  <!-- Measurement Path -->
+  <div class="bg-white border border-aiei/20 rounded-2xl p-6 mb-6">
+    <h3 class="font-bold text-sm text-aiei mb-1">From Estimate to Evidence</h3>
+    <p class="text-xs text-gray-400 mb-4">These numbers are estimates. Here is how to replace them with measured data using the AIEI Tool in Postman.</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="border border-gray-200 rounded-xl p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-7 h-7 rounded-full bg-green-100 text-green-700 text-xs font-bold flex items-center justify-center">W1</span>
+          <span class="font-semibold text-sm text-gray-800">Week 1: R-Score</span>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1.5">
+          <div>1 Postman CLI integration in CI/CD = Contract Catch Rate</div>
+          <div>1 Postman Monitor on a critical API = SLO Attainment</div>
+          <div>Deploy metadata linked to test results = CFR</div>
+        </div>
+        <div class="mt-2 text-[10px] text-gray-400">Connectors: Postman API, GitHub MCP</div>
+      </div>
+      <div class="border border-gray-200 rounded-xl p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center">M1</span>
+          <span class="font-semibold text-sm text-gray-800">Month 1: Q + L Scores</span>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1.5">
+          <div>Join GitHub PR data for cycle time deltas (L)</div>
+          <div>Connect SonarQube for defect attribution (Q)</div>
+          <div>Tag AI-assisted vs non-AI changes for baselines</div>
+        </div>
+        <div class="mt-2 text-[10px] text-gray-400">Connectors: GitHub, SonarQube, Datadog MCPs</div>
+      </div>
+      <div class="border border-gray-200 rounded-xl p-4">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-7 h-7 rounded-full bg-aiei/20 text-aiei text-xs font-bold flex items-center justify-center">Q1</span>
+          <span class="font-semibold text-sm text-gray-800">Quarter 1: Full AIEI</span>
+        </div>
+        <div class="text-xs text-gray-600 space-y-1.5">
+          <div>Connect LLM billing for token + infra costs (C)</div>
+          <div>Add DX survey data for developer experience</div>
+          <div>Board-ready composite score with trend tracking</div>
+        </div>
+        <div class="mt-2 text-[10px] text-gray-400">Connectors: + AWS, Vercel, DX, Entire.io MCPs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Try with Real Data CTA -->
+  <div class="bg-gradient-to-r from-aiei/5 to-postman-bg border border-aiei/20 rounded-2xl p-6 mb-6 text-center no-print">
+    <h3 class="font-bold text-base text-gray-900 mb-2">Replace estimates with evidence</h3>
+    <p class="text-sm text-gray-500 mb-4">The AIEI Tool is a Postman workspace with 23 collections and 13 MCP connectors. Fork it, plug in one GitHub token, and get a real R-Score in five minutes.</p>
+    <div class="flex justify-center gap-3 flex-wrap">
+      <div class="text-xs text-gray-500 bg-white border border-gray-200 rounded-lg px-3 py-2">23 collections</div>
+      <div class="text-xs text-gray-500 bg-white border border-gray-200 rounded-lg px-3 py-2">99 requests</div>
+      <div class="text-xs text-gray-500 bg-white border border-gray-200 rounded-lg px-3 py-2">13 MCP connectors</div>
+      <div class="text-xs text-gray-500 bg-white border border-gray-200 rounded-lg px-3 py-2">Zero-config mock demo</div>
+    </div>
+    <p class="text-[11px] text-gray-400 mt-3">Ask your Postman representative to share the AIEI workspace, or run collection 00 (Quick Start Guide) to see scores in five minutes.</p>
+  </div>
+
   <div class="text-center text-xs text-gray-400 pb-8">
     Estimates based on Forrester TEI, customer benchmarks, and Postman State of API data. For measured results, connect the AIEI Tool to your actual data sources.
   </div>
@@ -321,22 +385,22 @@ const orgDefaults={
 
 const pillarData={
   platform:[
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>',title:'API Catalog',desc:'Single pane of glass for all APIs and services'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',title:'Agent Mode',desc:'Shadow API discovery for ungoverned endpoints'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>',title:'Governance',desc:'Automated Spectral linting replaces manual reviews'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>',title:'Org Mode',desc:'Clean boundary management across teams'}
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>',title:'API Catalog',desc:'Single pane of glass for all APIs and services',dim:'R'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',title:'Agent Mode',desc:'Shadow API discovery for ungoverned endpoints',dim:'R'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>',title:'Governance',desc:'Automated Spectral linting replaces manual reviews',dim:'Q'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>',title:'Org Mode',desc:'Clean boundary management across teams',dim:'R'}
   ],
   product:[
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',title:'Agent Mode',desc:'AI code gen, test gen, and spec authoring'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>',title:'Git-Native Workflows',desc:'Feature branches, local mocks, CLI-first'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>',title:'SDK Distribution',desc:'Native SDK generation for consumer onboarding'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>',title:'API Insights',desc:'Eliminate duplicate builds through discovery'}
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',title:'Agent Mode',desc:'AI code gen, test gen, and spec authoring',dim:'L'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>',title:'Git-Native Workflows',desc:'Feature branches, local mocks, CLI-first',dim:'L'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>',title:'SDK Distribution',desc:'Native SDK generation for consumer onboarding',dim:'C'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>',title:'API Insights',desc:'Eliminate duplicate builds through discovery',dim:'R'}
   ],
   qe:[
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',title:'Agent Mode',desc:'AI test generation replaces 80% of manual effort'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>',title:'CLI Integration',desc:'Automated quality gates in CI/CD pipelines'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',title:'Contract Testing',desc:'Catch breaking changes before production'},
-    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',title:'Collection Runner',desc:'Compress regression from days to minutes'}
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',title:'Agent Mode',desc:'AI test generation replaces 80% of manual effort',dim:'Q'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>',title:'CLI Integration',desc:'Automated quality gates in CI/CD pipelines',dim:'R'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>',title:'Contract Testing',desc:'Catch breaking changes before production',dim:'Q'},
+    {icon:'<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>',title:'Collection Runner',desc:'Compress regression from days to minutes',dim:'L'}
   ]
 };
 
@@ -347,16 +411,16 @@ const statData={
 };
 
 const driverMeta={
-  productivity:{label:'Developer Productivity',v12:'Agent Mode productivity boost (1.35x)'},
-  governance:{label:'Governance Automation',v12:'Spectral linting via API Catalog'},
-  shadowAPI:{label:'Shadow API Discovery',v12:'Agent Mode discovers ungoverned endpoints'},
-  outages:{label:'Outage Prevention',v12:'Monitors + contract testing in CI/CD'},
-  integration:{label:'Integration Acceleration',v12:'API Catalog reduces TTFC to minutes'},
-  apiDesign:{label:'API Design Efficiency',v12:'AI-assisted spec authoring (45% faster)'},
-  costOfDelay:{label:'Cost of Delay',v12:'Git-native workflows accelerate releases'},
-  fteEfficiency:{label:'QA FTE Efficiency',v12:'Agent Mode AI test generation (80%)'},
-  testCompression:{label:'Test Compression',v12:'Collection Runner in CI/CD pipelines'},
-  avoidedRework:{label:'Avoided Rework',v12:'Private API Network prevents duplicates'}
+  productivity:{label:'Developer Productivity',v12:'Agent Mode productivity boost (1.35x)',dims:['L','C']},
+  governance:{label:'Governance Automation',v12:'Spectral linting via API Catalog',dims:['Q','R']},
+  shadowAPI:{label:'Shadow API Discovery',v12:'Agent Mode discovers ungoverned endpoints',dims:['R']},
+  outages:{label:'Outage Prevention',v12:'Monitors + contract testing in CI/CD',dims:['R']},
+  integration:{label:'Integration Acceleration',v12:'API Catalog reduces TTFC to minutes',dims:['L']},
+  apiDesign:{label:'API Design Efficiency',v12:'AI-assisted spec authoring (45% faster)',dims:['Q','L']},
+  costOfDelay:{label:'Cost of Delay',v12:'Git-native workflows accelerate releases',dims:['L','R']},
+  fteEfficiency:{label:'QA FTE Efficiency',v12:'Agent Mode AI test generation (80%)',dims:['Q','C']},
+  testCompression:{label:'Test Compression',v12:'Collection Runner in CI/CD pipelines',dims:['Q','R']},
+  avoidedRework:{label:'Avoided Rework',v12:'Private API Network prevents duplicates',dims:['C']}
 };
 
 function pickAud(a){
@@ -381,7 +445,9 @@ function pickW(w){curW=w;document.querySelectorAll('.wp-btn').forEach(e=>{e.clas
 
 function renderPillars(a){
   const pillars=pillarData[a]||pillarData.platform;
-  $('v12pillars').innerHTML=pillars.map(p=>'<div class="flex items-start gap-2.5 bg-white border border-gray-200 rounded-lg px-3 py-2.5"><div class="text-postman mt-0.5 shrink-0">'+p.icon+'</div><div><div class="font-semibold text-xs text-gray-800">'+p.title+'</div><div class="text-[11px] text-gray-500">'+p.desc+'</div></div></div>').join('');
+  const dimColors={Q:'bg-aiei/10 text-aiei',L:'bg-blue-50 text-blue-600',R:'bg-green-50 text-green-700',C:'bg-amber-50 text-amber-700'};
+  const dimLabels={Q:'Q: Quality',L:'L: Lead Time',R:'R: Reliability',C:'C: Cost'};
+  $('v12pillars').innerHTML=pillars.map(p=>'<div class="flex items-start gap-2.5 bg-white border border-gray-200 rounded-lg px-3 py-2.5"><div class="text-postman mt-0.5 shrink-0">'+p.icon+'</div><div class="flex-1"><div class="flex items-center justify-between"><span class="font-semibold text-xs text-gray-800">'+p.title+'</span><span class="text-[9px] px-1.5 py-0.5 rounded-full font-medium '+(dimColors[p.dim]||'')+'">'+(dimLabels[p.dim]||'')+'</span></div><div class="text-[11px] text-gray-500">'+p.desc+'</div></div></div>').join('');
 }
 
 function renderStat(a){
@@ -487,8 +553,34 @@ function calc(){
   else if(cls==='Mixed'){$('r-nextSteps').innerHTML='<div>1. Focus on <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+').</div><div>2. Start with R-Score via Postman Monitors + CLI.</div><div>3. Hold AI expansion until '+weakest.n.toLowerCase()+' improves.</div><div>4. Layer GitHub data for Q and L within 30 days.</div>'}
   else{$('r-nextSteps').innerHTML='<div>1. <strong>Pause AI expansion.</strong></div><div>2. Invest in governance and contract testing.</div><div>3. Measure R-Score immediately.</div><div>4. No new AI adoption until AIEI > 0.40.</div>'}
 
+  renderRiskMap(bva,{Q,L,R,C});
+
   $('page-input').classList.add('hidden');$('page-results').classList.remove('hidden');
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderRiskMap(bva,scores){
+  const dimNames={Q:'Quality',L:'Lead Time',R:'Reliability',C:'Cost Efficiency'};
+  const dimColors={Q:'text-aiei',L:'text-blue-600',R:'text-green-700',C:'text-amber-700'};
+  const weak=Object.entries(scores).filter(([,v])=>v<0.5).map(([k])=>k);
+  const sec=$('r-riskSection');
+  if(!weak.length){sec.classList.add('hidden');return}
+  sec.classList.remove('hidden');
+  let items=[];
+  weak.forEach(dim=>{
+    const atRisk=Object.entries(bva).filter(([k])=>(driverMeta[k]?.dims||[]).includes(dim)).sort((a,b)=>b[1]-a[1]);
+    const atRiskTotal=atRisk.reduce((s,e)=>s+e[1],0);
+    if(!atRisk.length)return;
+    items.push('<div class="border border-red-100 bg-red-50/50 rounded-xl p-4">'+
+      '<div class="flex items-center justify-between mb-2">'+
+        '<div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-400"></span><span class="font-semibold text-sm '+dimColors[dim]+'">'+dimNames[dim]+' = '+scores[dim].toFixed(2)+'</span></div>'+
+        '<span class="text-sm font-bold text-red-600">$'+fm(atRiskTotal)+' at risk</span>'+
+      '</div>'+
+      '<div class="text-xs text-gray-600 space-y-1">'+atRisk.map(([k,val])=>'<div class="flex justify-between"><span>'+(driverMeta[k]?.label||k)+'</span><span class="text-gray-400">$'+fm(val)+'</span></div>').join('')+'</div>'+
+      '<div class="mt-2 text-[11px] text-gray-400 italic">Fix this dimension to protect these value drivers.</div>'+
+    '</div>');
+  });
+  $('r-riskItems').innerHTML=items.join('');
 }
 
 function xCopy(){const b=window._bva||{},a=window._aiei||{};
