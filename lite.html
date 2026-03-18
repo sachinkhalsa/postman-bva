@@ -439,11 +439,16 @@ body{font-family:'Inter',sans-serif}
 .tip-wrap{position:relative;display:inline-flex;align-items:center}
 .tip-icon{width:13px;height:13px;color:#9ca3af;cursor:pointer;flex-shrink:0;transition:color .15s}
 .tip-icon:hover{color:#FF6C37}
-.tip-pop{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);width:220px;background:#1f2937;color:#f9fafb;font-size:11px;line-height:1.45;padding:8px 10px;border-radius:8px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.tip-pop{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);width:240px;background:#1f2937;color:#f9fafb;font-size:11px;line-height:1.45;padding:8px 10px;border-radius:8px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.15)}
 .tip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1f2937}
 .tip-pop.show{display:block}
 .tip-pop .tip-src{color:#a78bfa;font-size:10px;margin-top:3px;display:block}
 .tip-pop a{color:#FF6C37;text-decoration:underline}
+.tip-bm{margin-top:6px;border-top:1px solid #374151;padding-top:5px}
+.tip-bm-label{color:#a78bfa;font-size:9px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.tip-bm-btn{display:block;width:100%;text-align:left;padding:3px 6px;margin:2px 0;border-radius:4px;cursor:pointer;transition:background .15s;color:#d1d5db;font-size:10px;border:none;background:transparent}
+.tip-bm-btn:hover{background:#374151;color:#fff}
+.tip-bm-btn .bm-src{color:#6b7280;font-size:9px;float:right}
 .driver-off{opacity:.35;text-decoration:line-through}
 </style>
 
@@ -455,44 +460,44 @@ function fmShort(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'
 
 const tipData={
   totalDevs:{t:'Total engineers consuming or building APIs.',s:'Scales all productivity and cost formulas.'},
-  hourlyRate:{t:'Blended fully-loaded cost per developer hour (salary + benefits + overhead).',s:'$80 default: Forrester TEI for Postman (2022)'},
-  annualReleases:{t:'How many production releases per year. Drives QA regression and test compression value.',s:'Customer benchmarks'},
+  hourlyRate:{t:'Blended fully-loaded cost per developer hour (salary + benefits + overhead).',s:'Forrester TEI for Postman (2022)',b:[{v:65,l:'$65 - Junior-heavy org',s:'BLS 2024'},{v:80,l:'$80 - Blended average',s:'Forrester TEI'},{v:110,l:'$110 - Senior/HCOL market',s:'Levels.fyi median'}]},
+  annualReleases:{t:'Production releases per year. Drives QA regression and test compression value.',s:'Customer benchmarks',b:[{v:12,l:'12/yr - Monthly releases',s:'Typical waterfall'},{v:24,l:'24/yr - Biweekly sprints',s:'Forrester TEI baseline'},{v:52,l:'52/yr - Weekly CI/CD',s:'DORA Elite performers'}]},
   qaEngineers:{t:'Dedicated QA/SDET headcount. Drives FTE efficiency and test automation value.',s:'Org-scaled estimate'},
-  hoursLost:{t:'Hours per developer per week lost to environment setup, debugging, and blocked dependencies.',s:'3 hrs default: Forrester TEI for Postman (2022)'},
-  netNewApis:{t:'New APIs designed and published annually. Drives API design acceleration value.',s:'Customer benchmarks'},
-  hrsPerApi:{t:'Hours spent per API on design and initial testing cycles.',s:'8 hrs default: Forrester TEI (25% cycle reduction)'},
-  integrationsYear:{t:'Number of new API integrations built per year. Ask: "How many new services did your team connect to last year?"',s:'Customer benchmarks'},
-  ttfcHours:{t:'Time-to-first-call: hours from discovering an API to making a successful call. Legacy systems average 4+ hours.',s:'4 hrs default: Customer benchmarks (legacy TTFC)'},
-  qaSalary:{t:'Average annual QA engineer compensation (fully loaded).',s:'$120K default: Org-scaled estimate'},
-  regressionCycle:{t:'Hours per manual regression cycle before each release.',s:'20 hrs default: Forrester TEI (95% compression via automation)'},
-  prsReviewed:{t:'Pull requests reviewed annually by senior engineers for API governance.',s:'Org-scaled estimate'},
-  minsPerReview:{t:'Minutes per PR for manual API linting and style review.',s:'15 min default: Forrester TEI (governance automation)'},
-  outagesYear:{t:'API-related production outages per year.',s:'4 default: Forrester TEI (30% reduction benchmark)'},
-  costPerOutage:{t:'Average cost per API outage including downtime, incident response, and customer impact.',s:'$50K default: IBM Cost of Data Breach Report (2024)'},
-  undiscoveredApis:{t:'Estimated ungoverned APIs running in production without documentation. Insights agent detects these from runtime traffic.',s:'Forrester TEI: 50% improvement in API standardization. Attribution to incident cost is a Postman estimate.'},
-  incidentCost:{t:'Average cost per security incident from an ungoverned API.',s:'$10K default: IBM Cost of Data Breach (scaled)'},
-  weeklyRevenue:{t:'Weekly revenue impact attributable to API delivery. 65% of orgs generate revenue from APIs, 25% derive over half.',s:'State of API 2025: postman.com/state-of-api'},
-  delayedReleases:{t:'Releases delayed per year due to API dependencies.',s:'Puppet State of DevOps: dependency wait is a top-3 delivery bottleneck'},
-  avgDelayWeeks:{t:'Average weeks of delay per blocked release.',s:'Customer benchmarks'},
-  redundantProjects:{t:'Redundant API projects built because teams could not discover what existed. 34% of developers cannot find existing APIs.',s:'State of API 2025: postman.com/state-of-api'},
-  newHires:{t:'New engineering hires per year. Postman collections reduce ramp-up time by 40%.',s:'Forrester TEI: 40% onboarding acceleration'},
-  defectRateAI:{t:'Defects escaped from AI-assisted changes / total AI-assisted changes.',s:'AIEI Thesis: Q formula component'},
-  defectRateNonAI:{t:'Defects escaped from non-AI changes / total non-AI changes. Baseline for comparison.',s:'AIEI Thesis: Q formula component'},
+  hoursLost:{t:'Hours per developer per week lost to env setup, debugging, and blocked dependencies. Ask: "How much time do your devs lose to environment issues each week?"',s:'Forrester TEI for Postman (2022)',b:[{v:2,l:'2 hrs - Well-tooled org',s:'Forrester low-end'},{v:3,l:'3 hrs - Industry average',s:'Forrester TEI'},{v:5,l:'5 hrs - Legacy/complex env',s:'Customer benchmarks'}]},
+  netNewApis:{t:'New APIs designed and published annually.',s:'Customer benchmarks',b:[{v:10,l:'10 - Smaller teams',s:'Estimate'},{v:20,l:'20 - Mid-market avg',s:'Customer benchmarks'},{v:50,l:'50 - API-first orgs',s:'State of API: 82% adopt API-first'}]},
+  hrsPerApi:{t:'Hours spent per API on design and initial testing cycles.',s:'Forrester TEI (25% cycle reduction)',b:[{v:4,l:'4 hrs - Standardized templates',s:'API-first orgs'},{v:8,l:'8 hrs - Industry average',s:'Forrester TEI'},{v:16,l:'16 hrs - No standards/manual',s:'Customer benchmarks'}]},
+  integrationsYear:{t:'New API integrations built per year. Ask: "How many new services did your team connect to last year?"',s:'Customer benchmarks',b:[{v:6,l:'6 - Small team',s:'Estimate'},{v:12,l:'12 - Mid-market avg',s:'Customer benchmarks'},{v:30,l:'30 - Platform team',s:'Customer benchmarks'}]},
+  ttfcHours:{t:'Time-to-first-call: hours from discovering an API to a successful call. Ask: "When a dev needs a new API, how long until they make their first call?"',s:'Customer benchmarks (legacy TTFC)',b:[{v:0.5,l:'30 min - Well-documented',s:'Postman customers w/ PAN'},{v:4,l:'4 hrs - Industry average',s:'Customer benchmarks'},{v:8,l:'8 hrs - Legacy/undocumented',s:'Customer benchmarks'}]},
+  qaSalary:{t:'Average annual QA engineer compensation (fully loaded).',s:'Org-scaled estimate',b:[{v:95000,l:'$95K - Junior QA',s:'BLS 2024'},{v:120000,l:'$120K - Mid-level',s:'Org-scaled estimate'},{v:145000,l:'$145K - Senior SDET',s:'Levels.fyi median'}]},
+  regressionCycle:{t:'Hours per manual regression cycle before each release.',s:'Forrester TEI (95% compression via automation)',b:[{v:8,l:'8 hrs - Small surface area',s:'Estimate'},{v:20,l:'20 hrs - Industry average',s:'Forrester TEI'},{v:40,l:'40 hrs - Complex/regulated',s:'Customer benchmarks'}]},
+  prsReviewed:{t:'PRs reviewed annually by senior engineers for API governance.',s:'Org-scaled estimate',b:[{v:250,l:'250 - Small team',s:'Estimate'},{v:500,l:'500 - Mid-market',s:'Org-scaled'},{v:2000,l:'2,000 - Large org',s:'Customer benchmarks'}]},
+  minsPerReview:{t:'Minutes per PR for manual API linting and style review.',s:'Forrester TEI (governance automation)',b:[{v:10,l:'10 min - Automated linting',s:'w/ Spectral rules'},{v:15,l:'15 min - Industry average',s:'Forrester TEI'},{v:30,l:'30 min - Manual eyeball review',s:'No automation baseline'}]},
+  outagesYear:{t:'API-related production outages per year.',s:'Forrester TEI (30% reduction benchmark)',b:[{v:2,l:'2 - Well-monitored',s:'DORA Elite'},{v:4,l:'4 - Industry average',s:'Forrester TEI'},{v:8,l:'8 - Complex microservices',s:'Customer benchmarks'}]},
+  costPerOutage:{t:'Average cost per API outage including downtime, incident response, and customer impact.',s:'IBM Cost of Data Breach Report (2024)',b:[{v:25000,l:'$25K - Low severity',s:'Estimate'},{v:50000,l:'$50K - Mid-market avg',s:'IBM (scaled)'},{v:150000,l:'$150K - Revenue-critical',s:'IBM Cost of Data Breach'}]},
+  undiscoveredApis:{t:'Estimated ungoverned APIs running in production without documentation. 34% of devs cannot find existing APIs.',s:'State of API 2025. Attribution to incident cost: Postman estimate based on Forrester 50% standardization improvement.',b:[{v:3,l:'3 - Small org, some visibility',s:'Estimate'},{v:10,l:'10 - Typical enterprise',s:'State of API: 34% undiscoverable'},{v:30,l:'30 - Large sprawl',s:'Customer benchmarks'}]},
+  incidentCost:{t:'Average cost per security incident from an ungoverned API.',s:'IBM Cost of Data Breach (scaled)',b:[{v:5000,l:'$5K - Minor incident',s:'Estimate'},{v:10000,l:'$10K - Moderate',s:'IBM (scaled)'},{v:50000,l:'$50K - Breach-level',s:'IBM: $4.45M avg breach / ~90 incidents'}]},
+  weeklyRevenue:{t:'Weekly revenue impact attributable to API delivery. 65% of orgs generate API revenue.',s:'State of API 2025',b:[{v:25000,l:'$25K - Smaller org',s:'Estimate'},{v:50000,l:'$50K - Mid-market',s:'SmartBear State of API'},{v:200000,l:'$200K - Revenue-critical APIs',s:'State of API: 25% derive 50%+ from APIs'}]},
+  delayedReleases:{t:'Releases delayed per year due to API dependencies.',s:'Puppet State of DevOps',b:[{v:2,l:'2 - Rare delays',s:'Estimate'},{v:4,l:'4 - Industry average',s:'Puppet DevOps'},{v:8,l:'8 - High dependency',s:'Customer benchmarks'}]},
+  avgDelayWeeks:{t:'Average weeks of delay per blocked release.',s:'Customer benchmarks',b:[{v:1,l:'1 week - Minor',s:'Estimate'},{v:2,l:'2 weeks - Industry avg',s:'Customer benchmarks'},{v:4,l:'4 weeks - Major blocker',s:'Customer benchmarks'}]},
+  redundantProjects:{t:'Redundant API projects built because teams could not discover what existed.',s:'State of API 2025: 34% cannot find existing APIs',b:[{v:1,l:'1 - Small org',s:'Estimate'},{v:3,l:'3 - Mid-market',s:'State of API: 34% undiscoverable'},{v:5,l:'5 - Large org sprawl',s:'Customer benchmarks'}]},
+  newHires:{t:'New engineering hires per year. Postman collections reduce ramp-up by 40%.',s:'Forrester TEI: 40% onboarding acceleration'},
+  defectRateAI:{t:'Defects escaped from AI-assisted changes / total AI-assisted changes.',s:'AIEI Thesis: Q formula component',b:[{v:0.03,l:'3% - Strong AI governance',s:'Best case'},{v:0.06,l:'6% - Typical with review',s:'AIEI estimate'},{v:0.12,l:'12% - Minimal oversight',s:'DORA: 7.2% stability decrease w/ AI'}]},
+  defectRateNonAI:{t:'Defects escaped from non-AI changes. Baseline for comparison.',s:'AIEI Thesis: Q formula component',b:[{v:0.05,l:'5% - Strong testing',s:'DORA Elite'},{v:0.08,l:'8% - Industry average',s:'AIEI estimate'},{v:0.15,l:'15% - Weak QA process',s:'DORA Low performers'}]},
   testPassDelta:{t:'Contract test pass rate for AI-generated tests vs manual tests (capped at 1.0).',s:'AIEI Thesis: Q formula component'},
-  reworkRateAI:{t:'% of AI-assisted changes reverted or substantially revised within 14 days.',s:'AIEI Thesis: Q > 0.8 = production-grade'},
-  cycleTimeAI:{t:'Median hours from first commit to production deploy for AI-assisted changes.',s:'AIEI Thesis: L formula; proxy via PR-to-merge delta'},
-  cycleTimeNonAI:{t:'Same metric for non-AI changes. L measures the delta.',s:'DORA 2025: dora.dev/research/2025'},
-  cfrAI:{t:'Failed deploys from AI-assisted changes / total AI-assisted deploys.',s:'DORA: Change Failure Rate, segmented by AI'},
-  sloAttainment:{t:'% of monitored APIs meeting SLO targets.',s:'Postman Monitors: native signal for R-Score'},
-  contractCatch:{t:'Breaking changes caught pre-prod / total breaking changes detected.',s:'Postman CLI in CI/CD: native signal for R-Score'},
-  uptimeAI:{t:'Availability of AI-managed or AI-modified APIs.',s:'AIEI Thesis: R formula; API Catalog criticality weighting'},
+  reworkRateAI:{t:'% of AI-assisted changes reverted or revised within 14 days.',s:'AIEI Thesis: Q > 0.8 = production-grade',b:[{v:0.10,l:'10% - Strong AI output',s:'Best case'},{v:0.15,l:'15% - Typical',s:'AIEI estimate'},{v:0.30,l:'30% - High rework',s:'METR: 19% longer with AI tools'}]},
+  cycleTimeAI:{t:'Median hours from first commit to production deploy for AI-assisted changes.',s:'AIEI Thesis: L formula',b:[{v:8,l:'8 hrs - Fast CI/CD',s:'DORA Elite'},{v:14,l:'14 hrs - Typical',s:'AIEI estimate'},{v:24,l:'24 hrs - Slow pipeline',s:'Customer benchmarks'}]},
+  cycleTimeNonAI:{t:'Same metric for non-AI changes. L measures the delta.',s:'DORA 2025',b:[{v:16,l:'16 hrs - Good baseline',s:'DORA High'},{v:24,l:'24 hrs - Industry average',s:'DORA 2025'},{v:48,l:'48 hrs - Slow org',s:'DORA Low performers'}]},
+  cfrAI:{t:'Failed deploys from AI-assisted changes / total AI-assisted deploys.',s:'DORA: Change Failure Rate',b:[{v:0.03,l:'3% - Strong governance',s:'DORA Elite'},{v:0.05,l:'5% - Typical',s:'AIEI estimate'},{v:0.15,l:'15% - No AI governance',s:'DORA: 7.2% stability drop w/ AI'}]},
+  sloAttainment:{t:'% of monitored APIs meeting SLO targets.',s:'Postman Monitors: native signal for R-Score',b:[{v:0.85,l:'85% - Needs work',s:'Below target'},{v:0.95,l:'95% - Industry standard',s:'Typical SLO target'},{v:0.995,l:'99.5% - Three nines',s:'SRE best practice'}]},
+  contractCatch:{t:'Breaking changes caught pre-prod / total breaking changes detected.',s:'Postman CLI in CI/CD: native signal for R-Score',b:[{v:0.60,l:'60% - Some CI testing',s:'Estimate'},{v:0.85,l:'85% - Postman CLI in CI/CD',s:'Forrester TEI'},{v:0.95,l:'95% - Full contract testing',s:'Best case'}]},
+  uptimeAI:{t:'Availability of AI-managed or AI-modified APIs.',s:'AIEI Thesis: R formula',b:[{v:0.95,l:'95% - Baseline',s:'Two nines'},{v:0.99,l:'99% - Standard target',s:'Industry standard'},{v:0.999,l:'99.9% - Three nines',s:'SRE target'}]},
   adaptability:{t:'Prompt revision success rate - how quickly AI workflows self-correct after failure.',s:'AIEI Thesis: R formula component'},
-  laborSaved:{t:'Hours saved x org-blended hourly rate. Use Git deltas (PR-to-merge), not self-reported estimates.',s:'AIEI Thesis: C formula; Kyndryl 2025 TCO data'},
-  overheadValue:{t:'Additional human review hours x blended rate. The trust-but-verify tax most orgs ignore.',s:'AIEI Thesis: TCO exceeds expectations by 40-60%'},
-  tokenCost:{t:'Total LLM token spend from provider billing.',s:'AIEI Thesis: C denominator'},
+  laborSaved:{t:'Hours saved x org-blended hourly rate. Use Git deltas, not self-reported estimates.',s:'AIEI Thesis: C formula',b:[{v:80000,l:'$80K - Conservative',s:'Low AI adoption'},{v:150000,l:'$150K - Moderate adoption',s:'AIEI estimate'},{v:400000,l:'$400K - Heavy AI usage',s:'High adoption, 200+ devs'}]},
+  overheadValue:{t:'Additional human review hours x blended rate. The trust-but-verify tax most orgs ignore.',s:'AIEI Thesis: TCO exceeds expectations by 40-60%',b:[{v:15000,l:'$15K - Light review',s:'Trusted AI output'},{v:30000,l:'$30K - Typical review tax',s:'AIEI estimate'},{v:80000,l:'$80K - Heavy oversight',s:'Kyndryl: 40-60% TCO overshoot'}]},
+  tokenCost:{t:'Total LLM token spend from provider billing.',s:'AIEI Thesis: C denominator',b:[{v:10000,l:'$10K - Light usage',s:'Small team'},{v:25000,l:'$25K - Moderate',s:'AIEI estimate'},{v:100000,l:'$100K - Enterprise scale',s:'Multi-model deployment'}]},
   infraCost:{t:'Compute, hosting, and infrastructure costs attributable to AI workloads.',s:'AIEI Thesis: C denominator'},
-  toolingCost:{t:'AI tool licensing costs (Copilot, Cursor, etc.).',s:'AIEI Thesis: C denominator'},
-  targetROI:{t:'Org minimum acceptable return. C_norm = min(C / Target_ROI, 1.0). >2.0 raw = 1.0 normalized.',s:'AIEI Thesis: normalization default'}
+  toolingCost:{t:'AI tool licensing costs (Copilot, Cursor, etc.).',s:'AIEI Thesis: C denominator',b:[{v:6000,l:'$6K - One tool, small team',s:'Copilot: $19/user/mo'},{v:15000,l:'$15K - Multi-tool',s:'AIEI estimate'},{v:60000,l:'$60K - Enterprise multi-tool',s:'Copilot + Cursor + custom'}]},
+  targetROI:{t:'Org minimum acceptable return. C_norm = min(C / Target_ROI, 1.0).',s:'AIEI Thesis: normalization default',b:[{v:1.5,l:'1.5x - Minimum viable',s:'Low bar'},{v:2,l:'2x - Standard target',s:'AIEI default'},{v:3,l:'3x - Aggressive target',s:'High-performance orgs'}]}
 };
 
 let excludedDrivers=new Set();
@@ -506,7 +511,21 @@ function initTips(){
     icon.setAttribute('class','tip-icon');icon.setAttribute('viewBox','0 0 20 20');icon.setAttribute('fill','currentColor');
     icon.innerHTML='<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>';
     const pop=document.createElement('div');pop.className='tip-pop';
-    pop.innerHTML=d.t+(d.s?'<span class="tip-src">'+d.s+'</span>':'');
+    let html=d.t+(d.s?'<span class="tip-src">'+d.s+'</span>':'');
+    if(d.b&&d.b.length){
+      html+='<div class="tip-bm"><div class="tip-bm-label">Industry benchmarks</div>';
+      d.b.forEach(bm=>{html+='<button class="tip-bm-btn" data-bmid="'+id+'" data-bmval="'+bm.v+'">'+bm.l+'<span class="bm-src">'+bm.s+'</span></button>'});
+      html+='</div>';
+    }
+    pop.innerHTML=html;
+    pop.querySelectorAll('.tip-bm-btn').forEach(btn=>{
+      btn.addEventListener('click',e=>{
+        e.stopPropagation();
+        const inp=$(btn.getAttribute('data-bmid'));
+        if(inp){inp.value=btn.getAttribute('data-bmval');refreshPreview()}
+        pop.classList.remove('show');
+      });
+    });
     icon.addEventListener('click',e=>{e.stopPropagation();document.querySelectorAll('.tip-pop.show').forEach(p=>p.classList.remove('show'));pop.classList.toggle('show')});
     wrap.appendChild(icon);wrap.appendChild(pop);
     el.parentNode.insertBefore(wrap,el.nextSibling);
