@@ -149,10 +149,10 @@ body{font-family:'Inter',sans-serif}
       <div class="bg-white border border-gray-200 rounded-xl p-5 mb-4">
         <h4 class="font-semibold text-sm text-gray-700 mb-3">Company Profile</h4>
         <div class="grid grid-cols-4 gap-3">
-          <div><label class="text-[11px] text-gray-500">Developers</label><input type="number" id="totalDevs" value="50" min="1" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-[11px] text-gray-500">Hourly Cost ($)</label><input type="number" id="hourlyRate" value="80" min="1" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-[11px] text-gray-500">Releases/Yr</label><input type="number" id="annualReleases" value="24" min="1" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-[11px] text-gray-500">QA Engineers</label><input type="number" id="qaEngineers" value="5" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-[11px] text-gray-500" data-tip="totalDevs">Developers</label><input type="number" id="totalDevs" value="50" min="1" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-[11px] text-gray-500" data-tip="hourlyRate">Hourly Cost ($)</label><input type="number" id="hourlyRate" value="80" min="1" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-[11px] text-gray-500" data-tip="annualReleases">Releases/Yr</label><input type="number" id="annualReleases" value="24" min="1" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-[11px] text-gray-500" data-tip="qaEngineers">QA Engineers</label><input type="number" id="qaEngineers" value="5" min="0" class="inp w-full" onchange="refreshPreview()"></div>
         </div>
       </div>
 
@@ -162,24 +162,24 @@ body{font-family:'Inter',sans-serif}
           <button onclick="resetBVA()" class="text-[10px] text-gray-400 hover:text-gray-600">Reset to defaults</button>
         </div>
         <div class="grid grid-cols-3 gap-3 text-[11px]">
-          <div><label class="text-gray-500">Hrs lost/week</label><input type="number" id="hoursLost" value="3" min="0" step="0.5" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Net New APIs/Yr</label><input type="number" id="netNewApis" value="20" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Hrs per API</label><input type="number" id="hrsPerApi" value="8" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Integrations/Yr</label><input type="number" id="integrationsYear" value="12" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">TTFC (Hrs)</label><input type="number" id="ttfcHours" value="4" min="0" step="0.5" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">QA Salary ($)</label><input type="number" id="qaSalary" value="120000" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Regression (Hrs)</label><input type="number" id="regressionCycle" value="20" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">PRs Reviewed/Yr</label><input type="number" id="prsReviewed" value="500" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Mins per Review</label><input type="number" id="minsPerReview" value="15" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Outages/Yr</label><input type="number" id="outagesYear" value="4" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Cost per Outage ($)</label><input type="number" id="costPerOutage" value="50000" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Undiscovered APIs</label><input type="number" id="undiscoveredApis" value="5" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Incident Cost ($)</label><input type="number" id="incidentCost" value="10000" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Weekly Rev ($)</label><input type="number" id="weeklyRevenue" value="50000" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Delayed Rel/Yr</label><input type="number" id="delayedReleases" value="3" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Avg Delay (Wks)</label><input type="number" id="avgDelayWeeks" value="2" min="0" step="0.5" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Redundant Proj/Yr</label><input type="number" id="redundantProjects" value="1" min="0" class="inp w-full" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">New Hires/Yr</label><input type="number" id="newHires" value="10" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="hoursLost">Hrs lost/week</label><input type="number" id="hoursLost" value="3" min="0" step="0.5" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="netNewApis">Net New APIs/Yr</label><input type="number" id="netNewApis" value="20" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="hrsPerApi">Hrs per API</label><input type="number" id="hrsPerApi" value="8" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="integrationsYear">Integrations/Yr</label><input type="number" id="integrationsYear" value="12" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="ttfcHours">TTFC (Hrs)</label><input type="number" id="ttfcHours" value="4" min="0" step="0.5" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="qaSalary">QA Salary ($)</label><input type="number" id="qaSalary" value="120000" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="regressionCycle">Regression (Hrs)</label><input type="number" id="regressionCycle" value="20" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="prsReviewed">PRs Reviewed/Yr</label><input type="number" id="prsReviewed" value="500" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="minsPerReview">Mins per Review</label><input type="number" id="minsPerReview" value="15" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="outagesYear">Outages/Yr</label><input type="number" id="outagesYear" value="4" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="costPerOutage">Cost per Outage ($)</label><input type="number" id="costPerOutage" value="50000" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="undiscoveredApis">Undiscovered APIs</label><input type="number" id="undiscoveredApis" value="5" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="incidentCost">Incident Cost ($)</label><input type="number" id="incidentCost" value="10000" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="weeklyRevenue">Weekly Rev ($)</label><input type="number" id="weeklyRevenue" value="50000" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="delayedReleases">Delayed Rel/Yr</label><input type="number" id="delayedReleases" value="3" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="avgDelayWeeks">Avg Delay (Wks)</label><input type="number" id="avgDelayWeeks" value="2" min="0" step="0.5" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="redundantProjects">Redundant Proj/Yr</label><input type="number" id="redundantProjects" value="1" min="0" class="inp w-full" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="newHires">New Hires/Yr</label><input type="number" id="newHires" value="10" min="0" class="inp w-full" onchange="refreshPreview()"></div>
         </div>
       </div>
 
@@ -195,25 +195,25 @@ body{font-family:'Inter',sans-serif}
           </div>
         </div>
         <div class="grid grid-cols-4 gap-3 text-[11px]">
-          <div><label class="text-gray-500">Defect (AI)</label><input type="number" id="defectRateAI" value="0.05" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Defect (Non-AI)</label><input type="number" id="defectRateNonAI" value="0.08" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Test Pass Delta</label><input type="number" id="testPassDelta" value="0.95" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Rework (AI)</label><input type="number" id="reworkRateAI" value="0.15" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Cycle AI (hrs)</label><input type="number" id="cycleTimeAI" value="12" min="0" step="0.5" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Cycle Non-AI (hrs)</label><input type="number" id="cycleTimeNonAI" value="20" min="0" step="0.5" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">CFR (AI)</label><input type="number" id="cfrAI" value="0.05" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">SLO Attainment</label><input type="number" id="sloAttainment" value="0.95" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Contract Catch</label><input type="number" id="contractCatch" value="0.90" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Uptime (AI)</label><input type="number" id="uptimeAI" value="0.99" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Adaptability</label><input type="number" id="adaptability" value="0.85" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Labor Saved ($)</label><input type="number" id="laborSaved" value="150000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Overhead ($)</label><input type="number" id="overheadValue" value="30000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Token Cost ($)</label><input type="number" id="tokenCost" value="20000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Infra Cost ($)</label><input type="number" id="infraCost" value="10000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
-          <div><label class="text-gray-500">Tooling Cost ($)</label><input type="number" id="toolingCost" value="15000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="defectRateAI">Defect (AI)</label><input type="number" id="defectRateAI" value="0.05" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="defectRateNonAI">Defect (Non-AI)</label><input type="number" id="defectRateNonAI" value="0.08" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="testPassDelta">Test Pass Delta</label><input type="number" id="testPassDelta" value="0.95" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="reworkRateAI">Rework (AI)</label><input type="number" id="reworkRateAI" value="0.15" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="cycleTimeAI">Cycle AI (hrs)</label><input type="number" id="cycleTimeAI" value="12" min="0" step="0.5" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="cycleTimeNonAI">Cycle Non-AI (hrs)</label><input type="number" id="cycleTimeNonAI" value="20" min="0" step="0.5" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="cfrAI">CFR (AI)</label><input type="number" id="cfrAI" value="0.05" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="sloAttainment">SLO Attainment</label><input type="number" id="sloAttainment" value="0.95" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="contractCatch">Contract Catch</label><input type="number" id="contractCatch" value="0.90" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="uptimeAI">Uptime (AI)</label><input type="number" id="uptimeAI" value="0.99" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="adaptability">Adaptability</label><input type="number" id="adaptability" value="0.85" min="0" max="1" step="0.01" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="laborSaved">Labor Saved ($)</label><input type="number" id="laborSaved" value="150000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="overheadValue">Overhead ($)</label><input type="number" id="overheadValue" value="30000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="tokenCost">Token Cost ($)</label><input type="number" id="tokenCost" value="20000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="infraCost">Infra Cost ($)</label><input type="number" id="infraCost" value="10000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="toolingCost">Tooling Cost ($)</label><input type="number" id="toolingCost" value="15000" min="0" class="inp w-full ai" onchange="refreshPreview()"></div>
         </div>
         <div class="mt-2 grid grid-cols-4 gap-3 text-[11px]">
-          <div><label class="text-gray-500">Target ROI</label><input type="number" id="targetROI" value="2" min="0.1" step="0.1" class="inp w-full ai" onchange="refreshPreview()"></div>
+          <div><label class="text-gray-500" data-tip="targetROI">Target ROI</label><input type="number" id="targetROI" value="2" min="0.1" step="0.1" class="inp w-full ai" onchange="refreshPreview()"></div>
         </div>
       </div>
 
@@ -359,6 +359,74 @@ body{font-family:'Inter',sans-serif}
     <p class="text-[11px] text-gray-400 mt-3">Ask your Postman representative to share the AIEI workspace, or run collection 00 (Quick Start Guide) to see scores in five minutes.</p>
   </div>
 
+  <!-- Methodology -->
+  <div class="border-t border-gray-200 pt-4 mb-6 no-print">
+    <button onclick="toggleMethodology()" class="flex items-center gap-2 text-sm text-gray-400 hover:text-gray-600 mx-auto">
+      <svg id="methChev" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+      Sources & Methodology
+    </button>
+    <div id="methodologyPanel" class="detail-panel mt-4 max-w-4xl mx-auto">
+      <div class="bg-white border border-gray-200 rounded-2xl p-6">
+        <h3 class="font-bold text-sm text-gray-900 mb-4">Sources & References</h3>
+        <div class="space-y-3 text-xs text-gray-600">
+          <div class="border-b border-gray-100 pb-3">
+            <div class="font-semibold text-gray-800 mb-1">Forrester Total Economic Impact for Postman (2022)</div>
+            <div>50% improvement in API standardization, 30% fewer breakages, 30% productivity increase, 40% onboarding acceleration, 95% regression compression, governance automation savings.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: Productivity, Governance, Outages, Test Compression, FTE Efficiency, Onboarding defaults</div>
+          </div>
+          <div class="border-b border-gray-100 pb-3">
+            <div class="font-semibold text-gray-800 mb-1">Postman State of the API 2025 <a href="https://postman.com/state-of-api" class="text-postman hover:underline" target="_blank" rel="noopener">(postman.com/state-of-api)</a></div>
+            <div>5,700+ respondents. 89% AI daily use. 34% cannot find existing APIs. 93% face collaboration blockers. 65% generate revenue from APIs. 51% cite unauthorized AI agent API calls as #1 security concern. Only 17% adopt contract testing. Quality #1 priority for 6 consecutive years.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: Shadow API Discovery, Weekly Revenue, Redundant Projects, Industry Stats</div>
+          </div>
+          <div class="border-b border-gray-100 pb-3">
+            <div class="font-semibold text-gray-800 mb-1">IBM Cost of a Data Breach Report (2024)</div>
+            <div>Average data breach cost: $4.45M globally. Production incident costs scale nonlinearly with detection time.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: Cost per Outage, Incident Cost defaults</div>
+          </div>
+          <div class="border-b border-gray-100 pb-3">
+            <div class="font-semibold text-gray-800 mb-1">DORA State of DevOps / AI-Assisted Development (2024-2025) <a href="https://dora.dev/research/2025" class="text-postman hover:underline" target="_blank" rel="noopener">(dora.dev)</a></div>
+            <div>25% increase in AI adoption correlates with 1.5% decrease in delivery throughput and 7.2% reduction in delivery stability. AI improves code quality (+3.4%) and review speed (+3.1%) but degrades system-level delivery without foundational practices.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: AIEI framework rationale, CFR/Lead Time benchmarks</div>
+          </div>
+          <div class="border-b border-gray-100 pb-3">
+            <div class="font-semibold text-gray-800 mb-1">Kyndryl 2025 AI Readiness Report / MIT Research</div>
+            <div>95% GenAI project failure rate against financial returns within 6 months. 85% of enterprises cannot track AI ROI. TCO exceeds expectations by 40-60%.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: AIEI Cost dimension, Trust-but-verify tax, Overhead defaults</div>
+          </div>
+          <div class="border-b border-gray-100 pb-3">
+            <div class="font-semibold text-gray-800 mb-1">Puppet State of DevOps Report</div>
+            <div>Dependency wait is a top-3 bottleneck to delivery performance.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: Cost of Delay, Delayed Releases defaults</div>
+          </div>
+          <div class="border-b border-gray-100 pb-3">
+            <div class="font-semibold text-gray-800 mb-1">NIST / IBM Systems Sciences Institute</div>
+            <div>Cost of defects increases 100x from development to production.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: Defect Remediation, production bug penalty</div>
+          </div>
+          <div class="border-b border-gray-100 pb-3">
+            <div class="font-semibold text-gray-800 mb-1">Gartner (2026)</div>
+            <div>40% of agentic AI initiatives will be cancelled by 2027 because enterprises are wrapping legacy APIs with agentic interfaces instead of designing for agent goals.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: AIEI framework rationale, interface layer thesis</div>
+          </div>
+          <div class="pb-3">
+            <div class="font-semibold text-gray-800 mb-1">AIEI Thesis (Khalsa, Nourian, Crawford, Gray - 2026)</div>
+            <div>All AIEI formulas (Q, L, R, C), weight profiles, composite scoring, measurement contract, and maturity model. Full paper available from your Postman representative.</div>
+            <div class="text-[10px] text-gray-400 mt-1">Used in: All AIEI inputs, weight profiles, scoring interpretation</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+          <h4 class="font-semibold text-xs text-gray-800 mb-2">Attribution Notes</h4>
+          <div class="text-[11px] text-gray-500 space-y-1.5">
+            <div><strong>Shadow API 50% mitigation:</strong> Derived from Forrester TEI's documented 50% improvement in API standardization for Postman Enterprise customers. The extrapolation from standardization to incident cost reduction is a Postman estimate based on customer deployment patterns, not an independently published figure.</div>
+            <div><strong>Agent Mode 1.35x multiplier:</strong> Postman internal benchmark based on early Agent Mode adoption. Not independently validated.</div>
+            <div><strong>Company size defaults:</strong> Tier-scaled estimates derived from Forrester TEI baselines, State of the API survey data, and Postman customer patterns. Not individually sourced per tier.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="text-center text-xs text-gray-400 pb-8">
     Estimates based on Forrester TEI, customer benchmarks, and Postman State of API data. For measured results, connect the AIEI Tool to your actual data sources.
   </div>
@@ -366,13 +434,85 @@ body{font-family:'Inter',sans-serif}
 </div>
 </div>
 
-<style>.inp{border:1px solid #d1d5db;border-radius:.5rem;padding:.35rem .6rem;font-size:.8rem;outline:none;transition:border-color .15s}.inp:focus{border-color:#FF6C37}.inp.ai:focus{border-color:#7C3AED}</style>
+<style>
+.inp{border:1px solid #d1d5db;border-radius:.5rem;padding:.35rem .6rem;font-size:.8rem;outline:none;transition:border-color .15s}.inp:focus{border-color:#FF6C37}.inp.ai:focus{border-color:#7C3AED}
+.tip-wrap{position:relative;display:inline-flex;align-items:center}
+.tip-icon{width:13px;height:13px;color:#9ca3af;cursor:pointer;flex-shrink:0;transition:color .15s}
+.tip-icon:hover{color:#FF6C37}
+.tip-pop{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);width:220px;background:#1f2937;color:#f9fafb;font-size:11px;line-height:1.45;padding:8px 10px;border-radius:8px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.tip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1f2937}
+.tip-pop.show{display:block}
+.tip-pop .tip-src{color:#a78bfa;font-size:10px;margin-top:3px;display:block}
+.tip-pop a{color:#FF6C37;text-decoration:underline}
+.driver-off{opacity:.35;text-decoration:line-through}
+</style>
 
 <script>
 const W={quality:{wQ:.35,wL:.2,wR:.35,wC:.1},speed:{wQ:.2,wL:.35,wR:.25,wC:.2},reliability:{wQ:.25,wL:.2,wR:.4,wC:.15},cost:{wQ:.25,wL:.25,wR:.2,wC:.3},balanced:{wQ:.25,wL:.25,wR:.25,wC:.25}};
 let curW='quality',curAud='platform',curOrg=50;
 const $=id=>document.getElementById(id),v=id=>+($(id).value),fm=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(n);
 function fmShort(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(0)+'K';return'$'+fm(n)}
+
+const tipData={
+  totalDevs:{t:'Total engineers consuming or building APIs.',s:'Scales all productivity and cost formulas.'},
+  hourlyRate:{t:'Blended fully-loaded cost per developer hour (salary + benefits + overhead).',s:'$80 default: Forrester TEI for Postman (2022)'},
+  annualReleases:{t:'How many production releases per year. Drives QA regression and test compression value.',s:'Customer benchmarks'},
+  qaEngineers:{t:'Dedicated QA/SDET headcount. Drives FTE efficiency and test automation value.',s:'Org-scaled estimate'},
+  hoursLost:{t:'Hours per developer per week lost to environment setup, debugging, and blocked dependencies.',s:'3 hrs default: Forrester TEI for Postman (2022)'},
+  netNewApis:{t:'New APIs designed and published annually. Drives API design acceleration value.',s:'Customer benchmarks'},
+  hrsPerApi:{t:'Hours spent per API on design and initial testing cycles.',s:'8 hrs default: Forrester TEI (25% cycle reduction)'},
+  integrationsYear:{t:'Number of new API integrations built per year. Ask: "How many new services did your team connect to last year?"',s:'Customer benchmarks'},
+  ttfcHours:{t:'Time-to-first-call: hours from discovering an API to making a successful call. Legacy systems average 4+ hours.',s:'4 hrs default: Customer benchmarks (legacy TTFC)'},
+  qaSalary:{t:'Average annual QA engineer compensation (fully loaded).',s:'$120K default: Org-scaled estimate'},
+  regressionCycle:{t:'Hours per manual regression cycle before each release.',s:'20 hrs default: Forrester TEI (95% compression via automation)'},
+  prsReviewed:{t:'Pull requests reviewed annually by senior engineers for API governance.',s:'Org-scaled estimate'},
+  minsPerReview:{t:'Minutes per PR for manual API linting and style review.',s:'15 min default: Forrester TEI (governance automation)'},
+  outagesYear:{t:'API-related production outages per year.',s:'4 default: Forrester TEI (30% reduction benchmark)'},
+  costPerOutage:{t:'Average cost per API outage including downtime, incident response, and customer impact.',s:'$50K default: IBM Cost of Data Breach Report (2024)'},
+  undiscoveredApis:{t:'Estimated ungoverned APIs running in production without documentation. Insights agent detects these from runtime traffic.',s:'Forrester TEI: 50% improvement in API standardization. Attribution to incident cost is a Postman estimate.'},
+  incidentCost:{t:'Average cost per security incident from an ungoverned API.',s:'$10K default: IBM Cost of Data Breach (scaled)'},
+  weeklyRevenue:{t:'Weekly revenue impact attributable to API delivery. 65% of orgs generate revenue from APIs, 25% derive over half.',s:'State of API 2025: postman.com/state-of-api'},
+  delayedReleases:{t:'Releases delayed per year due to API dependencies.',s:'Puppet State of DevOps: dependency wait is a top-3 delivery bottleneck'},
+  avgDelayWeeks:{t:'Average weeks of delay per blocked release.',s:'Customer benchmarks'},
+  redundantProjects:{t:'Redundant API projects built because teams could not discover what existed. 34% of developers cannot find existing APIs.',s:'State of API 2025: postman.com/state-of-api'},
+  newHires:{t:'New engineering hires per year. Postman collections reduce ramp-up time by 40%.',s:'Forrester TEI: 40% onboarding acceleration'},
+  defectRateAI:{t:'Defects escaped from AI-assisted changes / total AI-assisted changes.',s:'AIEI Thesis: Q formula component'},
+  defectRateNonAI:{t:'Defects escaped from non-AI changes / total non-AI changes. Baseline for comparison.',s:'AIEI Thesis: Q formula component'},
+  testPassDelta:{t:'Contract test pass rate for AI-generated tests vs manual tests (capped at 1.0).',s:'AIEI Thesis: Q formula component'},
+  reworkRateAI:{t:'% of AI-assisted changes reverted or substantially revised within 14 days.',s:'AIEI Thesis: Q > 0.8 = production-grade'},
+  cycleTimeAI:{t:'Median hours from first commit to production deploy for AI-assisted changes.',s:'AIEI Thesis: L formula; proxy via PR-to-merge delta'},
+  cycleTimeNonAI:{t:'Same metric for non-AI changes. L measures the delta.',s:'DORA 2025: dora.dev/research/2025'},
+  cfrAI:{t:'Failed deploys from AI-assisted changes / total AI-assisted deploys.',s:'DORA: Change Failure Rate, segmented by AI'},
+  sloAttainment:{t:'% of monitored APIs meeting SLO targets.',s:'Postman Monitors: native signal for R-Score'},
+  contractCatch:{t:'Breaking changes caught pre-prod / total breaking changes detected.',s:'Postman CLI in CI/CD: native signal for R-Score'},
+  uptimeAI:{t:'Availability of AI-managed or AI-modified APIs.',s:'AIEI Thesis: R formula; API Catalog criticality weighting'},
+  adaptability:{t:'Prompt revision success rate - how quickly AI workflows self-correct after failure.',s:'AIEI Thesis: R formula component'},
+  laborSaved:{t:'Hours saved x org-blended hourly rate. Use Git deltas (PR-to-merge), not self-reported estimates.',s:'AIEI Thesis: C formula; Kyndryl 2025 TCO data'},
+  overheadValue:{t:'Additional human review hours x blended rate. The trust-but-verify tax most orgs ignore.',s:'AIEI Thesis: TCO exceeds expectations by 40-60%'},
+  tokenCost:{t:'Total LLM token spend from provider billing.',s:'AIEI Thesis: C denominator'},
+  infraCost:{t:'Compute, hosting, and infrastructure costs attributable to AI workloads.',s:'AIEI Thesis: C denominator'},
+  toolingCost:{t:'AI tool licensing costs (Copilot, Cursor, etc.).',s:'AIEI Thesis: C denominator'},
+  targetROI:{t:'Org minimum acceptable return. C_norm = min(C / Target_ROI, 1.0). >2.0 raw = 1.0 normalized.',s:'AIEI Thesis: normalization default'}
+};
+
+let excludedDrivers=new Set();
+
+function initTips(){
+  document.querySelectorAll('[data-tip]').forEach(el=>{
+    const id=el.getAttribute('data-tip');
+    const d=tipData[id];if(!d)return;
+    const wrap=document.createElement('span');wrap.className='tip-wrap';
+    const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    icon.setAttribute('class','tip-icon');icon.setAttribute('viewBox','0 0 20 20');icon.setAttribute('fill','currentColor');
+    icon.innerHTML='<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>';
+    const pop=document.createElement('div');pop.className='tip-pop';
+    pop.innerHTML=d.t+(d.s?'<span class="tip-src">'+d.s+'</span>':'');
+    icon.addEventListener('click',e=>{e.stopPropagation();document.querySelectorAll('.tip-pop.show').forEach(p=>p.classList.remove('show'));pop.classList.toggle('show')});
+    wrap.appendChild(icon);wrap.appendChild(pop);
+    el.parentNode.insertBefore(wrap,el.nextSibling);
+  });
+  document.addEventListener('click',()=>document.querySelectorAll('.tip-pop.show').forEach(p=>p.classList.remove('show')));
+}
 
 const orgDefaults={
   50:{hourlyRate:80,annualReleases:24,qaEngineers:5,qaSalary:120000,hoursLost:3,netNewApis:20,hrsPerApi:8,integrationsYear:12,ttfcHours:4,regressionCycle:20,prsReviewed:500,minsPerReview:15,outagesYear:4,costPerOutage:50000,undiscoveredApis:5,incidentCost:10000,weeklyRevenue:50000,delayedReleases:3,avgDelayWeeks:2,redundantProjects:1,newHires:10,
@@ -524,9 +664,10 @@ function calc(){
   const ct=$('r-clsTop');ct.textContent=cls;ct.className='text-xs px-2 py-0.5 rounded-full '+(cls==='Effective'?'bg-purple-100 text-purple-800':cls==='Mixed'?'bg-purple-50 text-purple-600':'bg-purple-50/50 text-purple-400');
 
   const sorted=Object.entries(bva).sort((a,b)=>b[1]-a[1]);
+  window._sorted=sorted;window._bvaRaw=bva;
   const maxBva=sorted[0]?sorted[0][1]:1;
-  $('r-breakdown').innerHTML=sorted.map(([k,val])=>{const pct=maxBva>0?(val/maxBva*100):0;const m=driverMeta[k]||{label:k};return'<div><div class="flex justify-between text-sm mb-1"><span class="text-gray-600">'+(m.label)+'</span><span class="font-semibold">$'+fm(val)+'</span></div><div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-postman rounded-full h-2 transition-all" style="width:'+pct+'%"></div></div></div>'}).join('');
-  $('r-totalLine').textContent='$'+fm(total);
+  $('r-breakdown').innerHTML=sorted.map(([k,val])=>{const pct=maxBva>0?(val/maxBva*100):0;const m=driverMeta[k]||{label:k};const off=excludedDrivers.has(k);return'<div id="drv-'+k+'" class="'+(off?'driver-off':'')+'"><div class="flex justify-between text-sm mb-1"><div class="flex items-center gap-2"><button onclick="toggleDriver(\''+k+'\')" class="text-gray-300 hover:text-postman no-print" title="Toggle this driver"><svg class="w-3.5 h-3.5" fill="'+(off?'none':'currentColor')+'" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="'+(off?'M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.879L21 21':'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z')+'"/></svg></button><span class="text-gray-600">'+(m.label)+'</span></div><span class="font-semibold">$'+fm(val)+'</span></div><div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-postman rounded-full h-2 transition-all" style="width:'+pct+'%"></div></div></div>'}).join('');
+  updateTotals();
 
   $('r-aieiScore').textContent=aiei.toFixed(2);
   const rc=$('r-aieiCls');rc.textContent=cls;rc.className='text-sm px-3 py-1 rounded-full '+(cls==='Effective'?'bg-purple-100 text-purple-800':cls==='Mixed'?'bg-purple-50 text-purple-600':'bg-purple-50/50 text-purple-400');
@@ -561,7 +702,7 @@ function calc(){
 
 function renderRiskMap(bva,scores){
   const dimNames={Q:'Quality',L:'Lead Time',R:'Reliability',C:'Cost Efficiency'};
-  const dimColors={Q:'text-aiei',L:'text-blue-600',R:'text-green-700',C:'text-amber-700'};
+  const dimColors={Q:'text-aiei',L:'text-postman',R:'text-postman',C:'text-aiei'};
   const weak=Object.entries(scores).filter(([,v])=>v<0.5).map(([k])=>k);
   const sec=$('r-riskSection');
   if(!weak.length){sec.classList.add('hidden');return}
@@ -588,8 +729,31 @@ function xCopy(){const b=window._bva||{},a=window._aiei||{};
   let s='EXECUTIVE VALUE SUMMARY\n\nPostman Value: $'+fm(b.total||0)+' annual gains\nInvestment: $'+fm(b.inv||0)+'\nROI: '+(b.roi||0).toFixed(1)+'x'+bd+'\n\nAI EFFECTIVENESS INDEX: '+(a.aiei||0).toFixed(2)+' ('+(a.cls||'-')+')\nQ (Quality): '+(a.Q||0).toFixed(2)+'\nL (Lead Time): '+(a.L||0).toFixed(2)+'\nR (Reliability): '+(a.R||0).toFixed(2)+'\nC (Cost): '+(a.C||0).toFixed(2)+'\n\nEstimate based on Forrester TEI and customer benchmarks. Run AIEI Tool for measured results.';
   navigator.clipboard.writeText(s).then(()=>{const e=$('copyBtn');e.textContent='Copied!';setTimeout(()=>e.textContent='Copy Summary',2000)})}
 
+function toggleDriver(k){
+  if(excludedDrivers.has(k))excludedDrivers.delete(k);else excludedDrivers.add(k);
+  const el=$('drv-'+k);if(el)el.classList.toggle('driver-off');
+  updateTotals();
+}
+function updateTotals(){
+  const bva=window._bvaRaw||{};
+  const included=Object.entries(bva).filter(([k])=>!excludedDrivers.has(k));
+  const adjTotal=included.reduce((s,[,v])=>s+v,0);
+  const d=v('totalDevs'),inv=d*588,roi=inv>0?adjTotal/inv:0;
+  $('r-totalLine').textContent='$'+fm(adjTotal);
+  $('r-heroVal').textContent='$'+fm(adjTotal);
+  $('r-inv').textContent='$'+fm(inv);
+  $('r-roi').textContent=roi.toFixed(1)+'x';
+  if(excludedDrivers.size>0){
+    if(!$('r-exNote')){const n=document.createElement('div');n.id='r-exNote';n.className='text-[11px] text-gray-400 italic mt-2';$('r-breakdown').parentNode.appendChild(n)}
+    $('r-exNote').textContent=excludedDrivers.size+' driver'+(excludedDrivers.size>1?'s':'')+' excluded. Click the eye icon to re-include.';
+  }else{const n=$('r-exNote');if(n)n.remove()}
+}
+
+function toggleMethodology(){const p=$('methodologyPanel'),c=$('methChev');p.classList.toggle('open');c.style.transform=p.classList.contains('open')?'rotate(180deg)':''}
+
 renderPillars('platform');
 renderStat('platform');
+initTips();
 refreshPreview();
 </script>
 </body>
