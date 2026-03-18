@@ -113,7 +113,7 @@ body{font-family:'Inter',sans-serif}
       <div class="text-right">
         <div class="flex items-center gap-2 mb-1">
           <span class="text-2xl font-bold text-aiei" id="previewAIEI">0.65</span>
-          <span id="previewCls" class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Mixed</span>
+          <span id="previewCls" class="text-[10px] px-2 py-0.5 rounded-full bg-purple-50 text-purple-600">Mixed</span>
         </div>
         <div class="text-[10px] text-gray-400" id="previewWeightLabel">Quality-First weights</div>
       </div>
@@ -243,7 +243,7 @@ body{font-family:'Inter',sans-serif}
       <div class="w-px h-5 bg-gray-200"></div>
       <div>ROI: <span class="font-bold text-postman text-lg" id="r-roi">0x</span></div>
       <div class="w-px h-5 bg-gray-200"></div>
-      <div>AI Effectiveness: <span class="font-bold text-aiei text-lg" id="r-aieiTop">0.00</span> <span id="r-clsTop" class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-500">Pending</span></div>
+      <div>AI Effectiveness: <span class="font-bold text-aiei text-lg" id="r-aieiTop">0.00</span> <span id="r-clsTop" class="text-xs px-2 py-0.5 rounded-full bg-purple-50/50 text-purple-400">Pending</span></div>
     </div>
     <div class="flex justify-center gap-3 mt-5 no-print">
       <button onclick="window.print()" class="text-sm px-5 py-2 bg-gray-100 hover:bg-gray-200 rounded-xl text-gray-600">Export PDF</button>
@@ -266,7 +266,7 @@ body{font-family:'Inter',sans-serif}
       <div class="flex items-center gap-4 mb-5">
         <div class="text-5xl font-bold text-aiei" id="r-aieiScore">0.00</div>
         <div>
-          <span id="r-aieiCls" class="text-sm px-3 py-1 rounded-full bg-gray-200 text-gray-500">Pending</span>
+          <span id="r-aieiCls" class="text-sm px-3 py-1 rounded-full bg-purple-50/50 text-purple-400">Pending</span>
           <div class="text-xs text-gray-400 mt-1" id="r-weightLabel">Quality-First weights</div>
         </div>
       </div>
@@ -494,7 +494,7 @@ function refreshPreview(){
   $('previewVal').textContent=fmShort(r.total);
   $('previewAIEI').textContent=r.aiei.toFixed(2);
   const ce=$('previewCls');ce.textContent=r.cls;
-  ce.className='text-[10px] px-2 py-0.5 rounded-full '+(r.cls==='Effective'?'bg-green-100 text-green-700':r.cls==='Mixed'?'bg-yellow-100 text-yellow-700':'bg-red-100 text-red-700');
+  ce.className='text-[10px] px-2 py-0.5 rounded-full '+(r.cls==='Effective'?'bg-purple-100 text-purple-800':r.cls==='Mixed'?'bg-purple-50 text-purple-600':'bg-purple-50/50 text-purple-400');
   $('previewWeightLabel').textContent=curW.charAt(0).toUpperCase()+curW.slice(1)+'-First weights';
   $('previewInv').textContent=fmShort(r.inv);
   $('previewROI').textContent=r.roi.toFixed(0)+'x';
@@ -521,7 +521,7 @@ function calc(){
   $('r-inv').textContent='$'+fm(inv);
   $('r-roi').textContent=roi.toFixed(1)+'x';
   $('r-aieiTop').textContent=aiei.toFixed(2);
-  const ct=$('r-clsTop');ct.textContent=cls;ct.className='text-xs px-2 py-0.5 rounded-full '+(cls==='Effective'?'bg-green-100 text-green-700':cls==='Mixed'?'bg-yellow-100 text-yellow-700':'bg-red-100 text-red-700');
+  const ct=$('r-clsTop');ct.textContent=cls;ct.className='text-xs px-2 py-0.5 rounded-full '+(cls==='Effective'?'bg-purple-100 text-purple-800':cls==='Mixed'?'bg-purple-50 text-purple-600':'bg-purple-50/50 text-purple-400');
 
   const sorted=Object.entries(bva).sort((a,b)=>b[1]-a[1]);
   const maxBva=sorted[0]?sorted[0][1]:1;
@@ -529,19 +529,19 @@ function calc(){
   $('r-totalLine').textContent='$'+fm(total);
 
   $('r-aieiScore').textContent=aiei.toFixed(2);
-  const rc=$('r-aieiCls');rc.textContent=cls;rc.className='text-sm px-3 py-1 rounded-full '+(cls==='Effective'?'bg-green-100 text-green-700':cls==='Mixed'?'bg-yellow-100 text-yellow-700':'bg-red-100 text-red-700');
+  const rc=$('r-aieiCls');rc.textContent=cls;rc.className='text-sm px-3 py-1 rounded-full '+(cls==='Effective'?'bg-purple-100 text-purple-800':cls==='Mixed'?'bg-purple-50 text-purple-600':'bg-purple-50/50 text-purple-400');
   $('r-weightLabel').textContent=curW.charAt(0).toUpperCase()+curW.slice(1)+' weights';
   $('r-qVal').textContent=Q.toFixed(2);$('r-lVal').textContent=L.toFixed(2);$('r-rVal').textContent=R.toFixed(2);$('r-cVal').textContent=C.toFixed(2);
   $('r-qBar').style.width=(Q*100)+'%';$('r-lBar').style.width=(L*100)+'%';$('r-rBar').style.width=(R*100)+'%';$('r-cBar').style.width=(C*100)+'%';
-  [['r-qBar',Q],['r-lBar',L],['r-rBar',R],['r-cBar',C]].forEach(([id,sc])=>{const e=$(id);e.className='rounded-full h-3 transition-all '+(sc>=.7?'bg-green-500':sc>=.4?'bg-yellow-500':'bg-red-500')});
+  [['r-qBar',Q],['r-lBar',L],['r-rBar',R],['r-cBar',C]].forEach(([id,sc])=>{const e=$(id);e.className='rounded-full h-3 transition-all '+(sc>=.7?'bg-purple-600':sc>=.4?'bg-purple-400':'bg-purple-200')});
 
   const dims=[{n:'Quality',v:Q},{n:'Lead Time',v:L},{n:'Reliability',v:R},{n:'Cost',v:C}];
   const weakest=dims.reduce((a,b)=>b.v<a.v?b:a);
   const strongest=dims.reduce((a,b)=>b.v>a.v?b:a);
   const ri=$('r-interp');ri.classList.remove('hidden');
-  if(cls==='Effective'){ri.className='mt-4 rounded-xl p-4 text-sm bg-green-50 text-green-800 border border-green-200';ri.innerHTML='<strong>AI is effective.</strong> All dimensions contributing positively. Strongest: '+strongest.n+' ('+strongest.v.toFixed(2)+'). Safe to expand AI adoption across additional teams. These results are board-presentable.'}
-  else if(cls==='Mixed'){ri.className='mt-4 rounded-xl p-4 text-sm bg-yellow-50 text-yellow-800 border border-yellow-200';ri.innerHTML='<strong>Mixed results.</strong> Weakest dimension: <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+'). Address this dimension before expanding AI to new teams. Run the full AIEI Tool to measure with real data.'}
-  else{ri.className='mt-4 rounded-xl p-4 text-sm bg-red-50 text-red-800 border border-red-200';ri.innerHTML='<strong>Technical Debt risk.</strong> Weakest: <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+'). Pause AI expansion and invest in measurement infrastructure, governance automation, and contract testing.'}
+  if(cls==='Effective'){ri.className='mt-4 rounded-xl p-4 text-sm bg-purple-50 text-purple-900 border border-purple-200';ri.innerHTML='<strong>AI is effective.</strong> All dimensions contributing positively. Strongest: '+strongest.n+' ('+strongest.v.toFixed(2)+'). Safe to expand AI adoption across additional teams. These results are board-presentable.'}
+  else if(cls==='Mixed'){ri.className='mt-4 rounded-xl p-4 text-sm bg-purple-50/60 text-purple-800 border border-purple-100';ri.innerHTML='<strong>Mixed results.</strong> Weakest dimension: <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+'). Address this dimension before expanding AI to new teams. Run the full AIEI Tool to measure with real data.'}
+  else{ri.className='mt-4 rounded-xl p-4 text-sm bg-purple-50/30 text-purple-700 border border-purple-100/50';ri.innerHTML='<strong>Technical Debt risk.</strong> Weakest: <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+'). Pause AI expansion and invest in measurement infrastructure, governance automation, and contract testing.'}
 
   const top5=sorted.slice(0,5);
   $('r-topDrivers').innerHTML=top5.map(([k,val],i)=>{const m=driverMeta[k]||{label:k};return'<div class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-postman/10 text-postman text-xs font-bold flex items-center justify-center">'+(i+1)+'</span><span class="flex-1 text-gray-700">'+m.label+'</span><span class="font-semibold">$'+fm(val)+'</span></div>'}).join('');
