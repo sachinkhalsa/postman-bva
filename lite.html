@@ -445,7 +445,7 @@ function pickW(w){curW=w;document.querySelectorAll('.wp-btn').forEach(e=>{e.clas
 
 function renderPillars(a){
   const pillars=pillarData[a]||pillarData.platform;
-  const dimColors={Q:'bg-aiei/10 text-aiei',L:'bg-blue-50 text-blue-600',R:'bg-green-50 text-green-700',C:'bg-amber-50 text-amber-700'};
+  const dimColors={Q:'bg-aiei-bg text-aiei',L:'bg-postman-bg text-postman',R:'bg-postman-bg text-postman',C:'bg-aiei-bg text-aiei'};
   const dimLabels={Q:'Q: Quality',L:'L: Lead Time',R:'R: Reliability',C:'C: Cost'};
   $('v12pillars').innerHTML=pillars.map(p=>'<div class="flex items-start gap-2.5 bg-white border border-gray-200 rounded-lg px-3 py-2.5"><div class="text-postman mt-0.5 shrink-0">'+p.icon+'</div><div class="flex-1"><div class="flex items-center justify-between"><span class="font-semibold text-xs text-gray-800">'+p.title+'</span><span class="text-[9px] px-1.5 py-0.5 rounded-full font-medium '+(dimColors[p.dim]||'')+'">'+(dimLabels[p.dim]||'')+'</span></div><div class="text-[11px] text-gray-500">'+p.desc+'</div></div></div>').join('');
 }
