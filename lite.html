@@ -310,9 +310,12 @@ const $=id=>document.getElementById(id),v=id=>+($(id).value),fm=n=>new Intl.Numb
 function fmShort(n){if(n>=1e6)return'$'+(n/1e6).toFixed(1)+'M';if(n>=1e3)return'$'+(n/1e3).toFixed(0)+'K';return'$'+fm(n)}
 
 const orgDefaults={
-  50:{hourlyRate:80,annualReleases:24,qaEngineers:5,qaSalary:120000,hoursLost:3,netNewApis:20,hrsPerApi:8,integrationsYear:12,ttfcHours:4,regressionCycle:20,prsReviewed:500,minsPerReview:15,outagesYear:4,costPerOutage:50000,undiscoveredApis:5,incidentCost:10000,weeklyRevenue:50000,delayedReleases:3,avgDelayWeeks:2,redundantProjects:1,newHires:10,laborSaved:150000,overheadValue:30000,tokenCost:20000,infraCost:10000,toolingCost:15000},
-  200:{hourlyRate:80,annualReleases:36,qaEngineers:8,qaSalary:115000,hoursLost:3,netNewApis:35,hrsPerApi:7,integrationsYear:20,ttfcHours:5,regressionCycle:18,prsReviewed:1000,minsPerReview:12,outagesYear:5,costPerOutage:45000,undiscoveredApis:10,incidentCost:15000,weeklyRevenue:100000,delayedReleases:5,avgDelayWeeks:2,redundantProjects:2,newHires:25,laborSaved:350000,overheadValue:55000,tokenCost:40000,infraCost:18000,toolingCost:25000},
-  1000:{hourlyRate:85,annualReleases:52,qaEngineers:20,qaSalary:115000,hoursLost:3.5,netNewApis:80,hrsPerApi:8,integrationsYear:50,ttfcHours:5,regressionCycle:24,prsReviewed:5000,minsPerReview:15,outagesYear:8,costPerOutage:75000,undiscoveredApis:30,incidentCost:20000,weeklyRevenue:200000,delayedReleases:8,avgDelayWeeks:2,redundantProjects:5,newHires:100,laborSaved:800000,overheadValue:200000,tokenCost:120000,infraCost:50000,toolingCost:80000}
+  50:{hourlyRate:80,annualReleases:24,qaEngineers:5,qaSalary:120000,hoursLost:3,netNewApis:20,hrsPerApi:8,integrationsYear:12,ttfcHours:4,regressionCycle:20,prsReviewed:500,minsPerReview:15,outagesYear:4,costPerOutage:50000,undiscoveredApis:5,incidentCost:10000,weeklyRevenue:50000,delayedReleases:3,avgDelayWeeks:2,redundantProjects:1,newHires:10,
+    defectRateAI:0.06,defectRateNonAI:0.09,testPassDelta:0.90,reworkRateAI:0.20,cycleTimeAI:14,cycleTimeNonAI:20,cfrAI:0.08,sloAttainment:0.90,contractCatch:0.80,uptimeAI:0.97,adaptability:0.80,laborSaved:120000,overheadValue:35000,tokenCost:18000,infraCost:8000,toolingCost:12000,targetROI:2},
+  200:{hourlyRate:80,annualReleases:36,qaEngineers:8,qaSalary:115000,hoursLost:3,netNewApis:35,hrsPerApi:7,integrationsYear:20,ttfcHours:5,regressionCycle:18,prsReviewed:1000,minsPerReview:12,outagesYear:5,costPerOutage:45000,undiscoveredApis:10,incidentCost:15000,weeklyRevenue:100000,delayedReleases:5,avgDelayWeeks:2,redundantProjects:2,newHires:25,
+    defectRateAI:0.05,defectRateNonAI:0.08,testPassDelta:0.93,reworkRateAI:0.17,cycleTimeAI:13,cycleTimeNonAI:22,cfrAI:0.06,sloAttainment:0.93,contractCatch:0.85,uptimeAI:0.98,adaptability:0.83,laborSaved:300000,overheadValue:60000,tokenCost:35000,infraCost:15000,toolingCost:22000,targetROI:2},
+  1000:{hourlyRate:85,annualReleases:52,qaEngineers:20,qaSalary:115000,hoursLost:3.5,netNewApis:80,hrsPerApi:8,integrationsYear:50,ttfcHours:5,regressionCycle:24,prsReviewed:5000,minsPerReview:15,outagesYear:8,costPerOutage:75000,undiscoveredApis:30,incidentCost:20000,weeklyRevenue:200000,delayedReleases:8,avgDelayWeeks:2,redundantProjects:5,newHires:100,
+    defectRateAI:0.04,defectRateNonAI:0.08,testPassDelta:0.95,reworkRateAI:0.15,cycleTimeAI:12,cycleTimeNonAI:24,cfrAI:0.05,sloAttainment:0.95,contractCatch:0.90,uptimeAI:0.99,adaptability:0.85,laborSaved:800000,overheadValue:200000,tokenCost:120000,infraCost:50000,toolingCost:80000,targetROI:2}
 };
 
 const pillarData={
@@ -359,8 +362,6 @@ function pickAud(a){
   curAud=a;
   document.querySelectorAll('.aud-btn').forEach(e=>{e.classList.remove('border-postman','bg-postman-bg');e.classList.add('border-gray-200','bg-white')});
   $('aud-'+a).classList.remove('border-gray-200','bg-white');$('aud-'+a).classList.add('border-postman','bg-postman-bg');
-  const wMap={platform:'quality',product:'speed',qe:'reliability'};
-  pickW(wMap[a]||'quality');
   renderPillars(a);
   renderStat(a);
   refreshPreview();
