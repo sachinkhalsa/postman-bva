@@ -17,7 +17,7 @@ body{font-family:'Inter',sans-serif}
 .chevron.rotated{transform:rotate(-180deg)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .fade-in{animation:fadeIn .3s ease-out forwards}
-@media print{.no-print{display:none!important}body{background:#fff}}
+@media print{.no-print{display:none!important}body{background:#fff}#page-results{display:block!important}#page-calc,#page-method{display:none!important}header{position:static!important}}
 </style>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen">
@@ -33,6 +33,7 @@ body{font-family:'Inter',sans-serif}
     </div>
     <div class="flex gap-4 text-sm">
       <button onclick="showPage('calc')" id="nav-calc" class="pb-1 font-semibold text-postman border-b-2 border-postman">Calculator</button>
+      <button onclick="if(window._bva)showPage('results')" id="nav-results" class="pb-1 text-gray-300 border-b-2 border-transparent cursor-default">Results</button>
       <button onclick="showPage('method')" id="nav-method" class="pb-1 text-gray-400 hover:text-gray-600 border-b-2 border-transparent">Methodology</button>
     </div>
   </div>
@@ -243,6 +244,98 @@ body{font-family:'Inter',sans-serif}
 </div>
 </div>
 
+<!-- RESULTS PAGE (full-width, presentation-grade) -->
+<div id="page-results" class="hidden">
+<div class="max-w-6xl mx-auto px-6 py-8">
+
+  <!-- Back to inputs -->
+  <div class="mb-6 no-print">
+    <button onclick="showPage('calc')" class="text-sm text-gray-500 hover:text-postman flex items-center gap-1.5">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      Edit Inputs
+    </button>
+  </div>
+
+  <!-- Hero -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-8 mb-6 text-center">
+    <p class="text-sm text-gray-400 uppercase tracking-wider font-semibold mb-2">Estimated Annual Value</p>
+    <div class="text-6xl font-bold text-postman mb-2" id="r-heroVal">$0</div>
+    <p class="text-lg text-gray-500">in projected annual efficiency gains from Postman</p>
+    <div class="mt-4 flex items-center justify-center gap-6 text-sm text-gray-500">
+      <div>Investment: <span class="font-semibold text-gray-800" id="r-inv">$0</span></div>
+      <div class="w-px h-5 bg-gray-200"></div>
+      <div>ROI: <span class="font-bold text-postman text-lg" id="r-roi">0x</span></div>
+      <div class="w-px h-5 bg-gray-200"></div>
+      <div>AI Effectiveness: <span class="font-bold text-aiei text-lg" id="r-aieiTop">0.00</span> <span id="r-clsTop" class="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-500">Pending</span></div>
+    </div>
+    <div class="flex justify-center gap-3 mt-5 no-print">
+      <button onclick="xPDF()" class="text-sm px-5 py-2 bg-gray-100 hover:bg-gray-200 rounded-xl text-gray-600">Export PDF</button>
+      <button onclick="xCopy()" id="copyBtn2" class="text-sm px-5 py-2 bg-postman/10 hover:bg-postman/20 rounded-xl text-postman font-medium">Copy Summary</button>
+    </div>
+  </div>
+
+  <!-- Two-column: BVA Breakdown + AIEI -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+
+    <!-- BVA Value Breakdown -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <h3 class="font-bold text-base text-gray-900 mb-4">Value Breakdown</h3>
+      <div id="r-breakdown" class="space-y-2.5"></div>
+      <div class="border-t border-gray-200 mt-4 pt-3 flex justify-between items-center">
+        <span class="font-semibold text-gray-900">Total Annual Value</span>
+        <span class="font-bold text-xl text-postman" id="r-totalLine">$0</span>
+      </div>
+    </div>
+
+    <!-- AIEI Full Card -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <h3 class="font-bold text-base text-aiei mb-4">AI Effectiveness Index</h3>
+      <div class="flex items-center gap-4 mb-5">
+        <div class="text-5xl font-bold text-aiei" id="r-aieiScore">0.00</div>
+        <div>
+          <span id="r-aieiCls" class="text-sm px-3 py-1 rounded-full bg-gray-200 text-gray-500">Pending</span>
+          <div class="text-xs text-gray-400 mt-1" id="r-weightLabel">Quality-First weights</div>
+        </div>
+      </div>
+      <!-- Dimension bars -->
+      <div class="space-y-3" id="r-dimBars">
+        <div><div class="flex justify-between text-sm mb-1"><span class="text-gray-600 font-medium">Q: Quality</span><span class="font-bold" id="r-qVal">-</span></div><div class="w-full bg-gray-100 rounded-full h-3"><div id="r-qBar" class="bg-aiei rounded-full h-3 transition-all" style="width:0%"></div></div></div>
+        <div><div class="flex justify-between text-sm mb-1"><span class="text-gray-600 font-medium">L: Lead Time</span><span class="font-bold" id="r-lVal">-</span></div><div class="w-full bg-gray-100 rounded-full h-3"><div id="r-lBar" class="bg-aiei rounded-full h-3 transition-all" style="width:0%"></div></div></div>
+        <div><div class="flex justify-between text-sm mb-1"><span class="text-gray-600 font-medium">R: Reliability</span><span class="font-bold" id="r-rVal">-</span></div><div class="w-full bg-gray-100 rounded-full h-3"><div id="r-rBar" class="bg-aiei rounded-full h-3 transition-all" style="width:0%"></div></div></div>
+        <div><div class="flex justify-between text-sm mb-1"><span class="text-gray-600 font-medium">C: Cost Efficiency</span><span class="font-bold" id="r-cVal">-</span></div><div class="w-full bg-gray-100 rounded-full h-3"><div id="r-cBar" class="bg-aiei rounded-full h-3 transition-all" style="width:0%"></div></div></div>
+      </div>
+      <!-- Interpretation -->
+      <div id="r-interp" class="mt-4 rounded-xl p-4 text-sm hidden"></div>
+    </div>
+  </div>
+
+  <!-- Bottom row: Strategic + Next Steps -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+    <!-- Top Drivers -->
+    <div class="bg-white border border-gray-200 rounded-2xl p-6">
+      <h3 class="font-bold text-sm text-gray-900 mb-3">Top Value Drivers</h3>
+      <div id="r-topDrivers" class="space-y-2"></div>
+    </div>
+    <!-- Strategic Outcomes -->
+    <div class="bg-postman-bg border border-postman/20 rounded-2xl p-6">
+      <h3 class="font-bold text-sm text-postman mb-3">Strategic Outcomes</h3>
+      <div id="r-stratOutcome" class="text-sm text-gray-700 space-y-2"></div>
+    </div>
+    <!-- Next Steps -->
+    <div class="bg-aiei-bg border border-aiei/20 rounded-2xl p-6">
+      <h3 class="font-bold text-sm text-aiei mb-3">Recommended Next Steps</h3>
+      <div id="r-nextSteps" class="text-sm text-gray-700 space-y-2"></div>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="text-center text-xs text-gray-400 pb-8">
+    Estimates based on Forrester TEI, customer benchmarks, and Postman State of API data. For measured results, connect the AIEI Tool to your actual data sources.
+  </div>
+
+</div>
+</div>
+
 <!-- METHODOLOGY PAGE -->
 <div id="page-method" class="hidden">
 <div class="max-w-3xl mx-auto px-6 py-8">
@@ -315,7 +408,11 @@ function pickOrg(n){[50,200,1000].forEach(s=>{const e=$('org-'+s);if(s===n){e.cl
 function pickW(w){curW=w;document.querySelectorAll('.wp-btn').forEach(e=>{e.classList.remove('border-aiei','bg-aiei-bg','text-aiei','font-medium');e.classList.add('border-gray-200','text-gray-500')});const e=$('wp-'+w);e.classList.remove('border-gray-200','text-gray-500');e.classList.add('border-aiei','bg-aiei-bg','text-aiei','font-medium')}
 function tog(id){$('ac-'+id).classList.toggle('collapsed');$('ch-'+id).classList.toggle('rotated')}
 function showTab(t){$('panel-bva').classList.toggle('hidden',t!=='bva');$('panel-aiei').classList.toggle('hidden',t!=='aiei');$('tab-bva').classList.toggle('text-postman',t==='bva');$('tab-bva').classList.toggle('border-postman',t==='bva');$('tab-bva').classList.toggle('font-semibold',t==='bva');$('tab-bva').classList.toggle('text-gray-400',t!=='bva');$('tab-bva').classList.toggle('border-transparent',t!=='bva');$('tab-aiei').classList.toggle('text-aiei',t==='aiei');$('tab-aiei').classList.toggle('border-aiei',t==='aiei');$('tab-aiei').classList.toggle('font-semibold',t==='aiei');$('tab-aiei').classList.toggle('text-gray-400',t!=='aiei');$('tab-aiei').classList.toggle('border-transparent',t!=='aiei')}
-function showPage(p){$('page-calc').classList.toggle('hidden',p!=='calc');$('page-method').classList.toggle('hidden',p!=='method');$('nav-calc').classList.toggle('text-postman',p==='calc');$('nav-calc').classList.toggle('border-postman',p==='calc');$('nav-calc').classList.toggle('font-semibold',p==='calc');$('nav-calc').classList.toggle('text-gray-400',p!=='calc');$('nav-calc').classList.toggle('border-transparent',p!=='calc');$('nav-method').classList.toggle('text-postman',p==='method');$('nav-method').classList.toggle('border-postman',p==='method');$('nav-method').classList.toggle('font-semibold',p==='method');$('nav-method').classList.toggle('text-gray-400',p!=='method');$('nav-method').classList.toggle('border-transparent',p!=='method')}
+function showPage(p){['calc','results','method'].forEach(pg=>$('page-'+pg).classList.toggle('hidden',pg!==p));
+  $('nav-calc').classList.toggle('text-postman',p==='calc');$('nav-calc').classList.toggle('border-postman',p==='calc');$('nav-calc').classList.toggle('font-semibold',p==='calc');$('nav-calc').classList.toggle('text-gray-400',p!=='calc');$('nav-calc').classList.toggle('border-transparent',p!=='calc');
+  const nr=$('nav-results');if(window._bva){nr.classList.remove('text-gray-300','cursor-default');nr.classList.toggle('text-postman',p==='results');nr.classList.toggle('border-postman',p==='results');nr.classList.toggle('font-semibold',p==='results');nr.classList.toggle('text-gray-400',p!=='results');nr.classList.toggle('border-transparent',p!=='results');nr.classList.add('cursor-pointer')}
+  $('nav-method').classList.toggle('text-postman',p==='method');$('nav-method').classList.toggle('border-postman',p==='method');$('nav-method').classList.toggle('font-semibold',p==='method');$('nav-method').classList.toggle('text-gray-400',p!=='method');$('nav-method').classList.toggle('border-transparent',p!=='method');
+  window.scrollTo({top:0,behavior:'smooth'})}
 
 function calc(){
   const am=$('agentMode').checked,d=v('totalDevs'),r=v('hourlyRate'),ar=r*1.25;
@@ -360,10 +457,58 @@ function calc(){
   else if(cls==='Mixed'){ip.className='bg-yellow-50 border border-yellow-200 rounded-xl p-3 text-xs text-yellow-800';it.innerHTML='<strong>Mixed results.</strong> Weakest dimension: <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+'). Address '+weakest.n.toLowerCase()+' before expanding AI to new teams. Run the full AIEI Tool to pinpoint root causes.'}
   else{ip.className='bg-red-50 border border-red-200 rounded-xl p-3 text-xs text-red-800';it.innerHTML='<strong>Technical Debt risk.</strong> Weakest dimension: <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+'). Pause AI expansion. Invest in measurement infrastructure and governance before scaling. The trust-but-verify tax likely exceeds the speed gains.'}
 
-  window._bva={total,inv,roi};window._aiei={aiei,Q,L,R,C,cls};
+  window._bva={bva,total,inv,roi};window._aiei={aiei,Q,L,R,C,cls};
+
+  // Populate full-width results page
+  $('r-heroVal').textContent='$'+fm(total);
+  $('r-inv').textContent='$'+fm(inv);
+  $('r-roi').textContent=roi.toFixed(1)+'x';
+  $('r-aieiTop').textContent=aiei.toFixed(2);
+  const ct=$('r-clsTop');ct.textContent=cls;ct.className='text-xs px-2 py-0.5 rounded-full '+(cls==='Effective'?'bg-green-100 text-green-700':cls==='Mixed'?'bg-yellow-100 text-yellow-700':'bg-red-100 text-red-700');
+
+  // BVA breakdown
+  const labels={productivity:'Developer Productivity',governance:'Governance Automation',shadowAPI:'Shadow API Discovery',outages:'Outage Prevention',integration:'Integration Acceleration',apiDesign:'API Design Efficiency',costOfDelay:'Cost of Delay',fteEfficiency:'QA FTE Efficiency',testCompression:'Test Compression',avoidedRework:'Avoided Rework'};
+  const sorted=Object.entries(bva).sort((a,b)=>b[1]-a[1]);
+  const maxBva=sorted[0]?sorted[0][1]:1;
+  $('r-breakdown').innerHTML=sorted.map(([k,val])=>{const pct=maxBva>0?(val/maxBva*100):0;return'<div><div class="flex justify-between text-sm mb-1"><span class="text-gray-600">'+(labels[k]||k)+'</span><span class="font-semibold">$'+fm(val)+'</span></div><div class="w-full bg-gray-100 rounded-full h-2"><div class="bg-postman rounded-full h-2 transition-all" style="width:'+pct+'%"></div></div></div>'}).join('');
+  $('r-totalLine').textContent='$'+fm(total);
+
+  // AIEI results
+  $('r-aieiScore').textContent=aiei.toFixed(2);
+  const rc=$('r-aieiCls');rc.textContent=cls;rc.className='text-sm px-3 py-1 rounded-full '+(cls==='Effective'?'bg-green-100 text-green-700':cls==='Mixed'?'bg-yellow-100 text-yellow-700':'bg-red-100 text-red-700');
+  $('r-weightLabel').textContent=curW.charAt(0).toUpperCase()+curW.slice(1)+' weights';
+  $('r-qVal').textContent=Q.toFixed(2);$('r-lVal').textContent=L.toFixed(2);$('r-rVal').textContent=R.toFixed(2);$('r-cVal').textContent=C.toFixed(2);
+  $('r-qBar').style.width=(Q*100)+'%';$('r-lBar').style.width=(L*100)+'%';$('r-rBar').style.width=(R*100)+'%';$('r-cBar').style.width=(C*100)+'%';
+
+  // Color dimension bars by score
+  [['r-qBar',Q],['r-lBar',L],['r-rBar',R],['r-cBar',C]].forEach(([id,sc])=>{const e=$(id);e.className='rounded-full h-3 transition-all '+(sc>=.7?'bg-green-500':sc>=.4?'bg-yellow-500':'bg-red-500')});
+
+  // Interpretation
+  const ri=$('r-interp');ri.classList.remove('hidden');
+  if(cls==='Effective'){ri.className='mt-4 rounded-xl p-4 text-sm bg-green-50 text-green-800 border border-green-200';ri.innerHTML='<strong>AI is effective.</strong> All dimensions contributing positively. Strongest: '+strongest.n+' ('+strongest.v.toFixed(2)+'). Safe to expand AI adoption across additional teams. These results are board-presentable.'}
+  else if(cls==='Mixed'){ri.className='mt-4 rounded-xl p-4 text-sm bg-yellow-50 text-yellow-800 border border-yellow-200';ri.innerHTML='<strong>Mixed results.</strong> Weakest dimension: <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+'). '+weakest.n+' is dragging the composite score. Address this dimension before expanding AI to new teams. Run the full AIEI Tool to measure with real data.'}
+  else{ri.className='mt-4 rounded-xl p-4 text-sm bg-red-50 text-red-800 border border-red-200';ri.innerHTML='<strong>Technical Debt risk.</strong> Weakest: <strong>'+weakest.n+'</strong> ('+weakest.v.toFixed(2)+'). The trust-but-verify tax likely exceeds speed gains. Pause AI expansion and invest in measurement infrastructure, governance automation, and contract testing.'}
+
+  // Top drivers (top 5 for results page)
+  const top5=sorted.slice(0,5);
+  $('r-topDrivers').innerHTML=top5.map(([k,val],i)=>'<div class="flex items-center gap-3"><span class="w-6 h-6 rounded-full bg-postman/10 text-postman text-xs font-bold flex items-center justify-center">'+(i+1)+'</span><span class="flex-1 text-gray-700">'+(labels[k]||k)+'</span><span class="font-semibold">$'+fm(val)+'</span></div>').join('');
+
+  // Strategic outcomes
+  $('r-stratOutcome').innerHTML='<div>Postman drives <strong class="text-postman">$'+fm(total)+'</strong> in annual efficiency gains across '+Object.keys(bva).length+' value categories.</div><div>At '+roi.toFixed(1)+'x ROI, every dollar invested returns $'+roi.toFixed(0)+' in platform value.</div>'+(am?'<div>Agent Mode (v12) contributes additional value across productivity, API design, and test automation.</div>':'');
+
+  // Next steps based on AIEI classification
+  if(cls==='Effective'){$('r-nextSteps').innerHTML='<div>1. Present these results to executive stakeholders with measured data.</div><div>2. Expand AI adoption to additional teams and use cases.</div><div>3. Connect the AIEI Tool to validate estimates with real data.</div><div>4. Establish quarterly measurement cadence for trend tracking.</div>'}
+  else if(cls==='Mixed'){$('r-nextSteps').innerHTML='<div>1. Focus on <strong>'+weakest.n+'</strong> - the weakest dimension at '+weakest.v.toFixed(2)+'.</div><div>2. Start with R-Score: connect Postman Monitors + CLI for a defensible reliability number in week one.</div><div>3. Do not expand AI to new teams until '+weakest.n.toLowerCase()+' improves above 0.70.</div><div>4. Layer GitHub data for Q and L within 30 days.</div>'}
+  else{$('r-nextSteps').innerHTML='<div>1. <strong>Pause AI expansion.</strong> Current deployment is generating technical debt.</div><div>2. Invest in governance automation and contract testing.</div><div>3. Measure R-Score immediately using Postman Monitors.</div><div>4. Establish verify-before-expand policy: no new AI adoption until AIEI > 0.40.</div>'}
+
+  showPage('results');
 }
 
-function xCopy(){const b=window._bva||{},a=window._aiei||{};let s='EXECUTIVE VALUE SUMMARY\n\nPostman Value: $'+fm(b.total||0)+' annual gains. ROI: '+(b.roi||0).toFixed(1)+'x.\nAIEI: '+(a.aiei||0).toFixed(2)+' ('+(a.cls||'-')+') Q:'+(a.Q||0).toFixed(2)+' L:'+(a.L||0).toFixed(2)+' R:'+(a.R||0).toFixed(2)+' C:'+(a.C||0).toFixed(2)+'\n\nEstimate. Run AIEI Tool for measured results.';navigator.clipboard.writeText(s).then(()=>{const b=$('copyBtn');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',2000)})}
+function xCopy(){const b=window._bva||{},a=window._aiei||{};
+  const labels={productivity:'Developer Productivity',governance:'Governance Automation',shadowAPI:'Shadow API Discovery',outages:'Outage Prevention',integration:'Integration Acceleration',apiDesign:'API Design Efficiency',costOfDelay:'Cost of Delay',fteEfficiency:'QA FTE Efficiency',testCompression:'Test Compression',avoidedRework:'Avoided Rework'};
+  let bd='';if(b.bva){const sorted=Object.entries(b.bva).sort((x,y)=>y[1]-x[1]);bd='\n\nVALUE BREAKDOWN\n'+sorted.map(([k,val])=>(labels[k]||k)+': $'+fm(val)).join('\n')}
+  let s='EXECUTIVE VALUE SUMMARY\n\nPostman Value: $'+fm(b.total||0)+' annual gains\nInvestment: $'+fm(b.inv||0)+'\nROI: '+(b.roi||0).toFixed(1)+'x'+bd+'\n\nAI EFFECTIVENESS INDEX: '+(a.aiei||0).toFixed(2)+' ('+(a.cls||'-')+')\nQ (Quality): '+(a.Q||0).toFixed(2)+'\nL (Lead Time): '+(a.L||0).toFixed(2)+'\nR (Reliability): '+(a.R||0).toFixed(2)+'\nC (Cost): '+(a.C||0).toFixed(2)+'\n\nEstimate based on Forrester TEI and customer benchmarks. Run AIEI Tool for measured results.';
+  navigator.clipboard.writeText(s).then(()=>{['copyBtn','copyBtn2'].forEach(id=>{const e=$(id);if(e){e.textContent='Copied!';setTimeout(()=>e.textContent=id==='copyBtn'?'Copy':'Copy Summary',2000)}})})}
 function xPDF(){window.print()}
 </script>
 </body>
